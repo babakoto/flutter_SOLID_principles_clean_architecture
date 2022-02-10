@@ -13,9 +13,13 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: BlocConsumer<ItemBloc, ItemState>(listener: (context, state) {
           if (state.status == Status.serverError) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                backgroundColor: Colors.red,
-                content: Container(child: Text("Server Error"))));
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Colors.red, content: Text("Server Error")));
+          }
+
+          if (state.status == Status.networkError) {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Colors.red, content: Text("Not connected ")));
           }
         }, builder: (context, state) {
           if (state.status == Status.empty) {

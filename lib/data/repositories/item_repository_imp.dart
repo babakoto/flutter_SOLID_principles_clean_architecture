@@ -21,6 +21,7 @@ class ItemRepositoryImp implements ItemRepository {
   @override
   Future<Result<Failure, List<Item>>> findItems() async {
     try {
+      network.hasConnexion();
       final result = await server.findItems();
       return Success(result);
     } on NotConnectedException {
