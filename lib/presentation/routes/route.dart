@@ -1,12 +1,14 @@
 import 'package:clean_architecture/presentation/views/detail/detail.dart';
 import 'package:clean_architecture/presentation/views/home/home.dart';
 import 'package:clean_architecture/presentation/views/login/login.dart';
+import 'package:clean_architecture/presentation/views/notfound/not_found_page.dart';
 import 'package:flutter/material.dart';
 
 abstract class Routes {
   static String home = "/home";
   static String detail = "/detail";
   static String login = "/login";
+  static String notFound = "/notFound";
 }
 
 abstract class AppRoute {
@@ -15,5 +17,6 @@ abstract class AppRoute {
     Routes.home: (context) => const HomePage(),
     Routes.detail: (context) => const DetailPage(),
     Routes.login: (context) => const LoginPage(),
+    Routes.notFound: (context) => const NotFound(),
   };
 }

@@ -1,16 +1,12 @@
 {
   "items": [
     {
-      "id": 1,
-      "name": "iphone"
-    },
-    {
       "id": 2,
       "name": "MacBook"
     },
     {
-      "name": "PC",
-      "id": 3
+      "name": "NFT",
+      "id": 4
     }
   ]
 }

@@ -5,4 +5,5 @@ export './entities/item.dart';
 export './repositories/item_repository.dart';
 
 // use cases
-export './usecase/find_items_usecase.dart';
+export './usecase/items/find_items_usecase.dart';
+export './usecase/items/find_item_by_id_usecase.dart';

@@ -1,5 +1,5 @@
 import 'package:clean_architecture/presentation/bloc/item/item_bloc.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:clean_architecture/presentation/routes/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,6 +21,10 @@ class HomePage extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 backgroundColor: Colors.red, content: Text("Not connected ")));
           }
+
+          if (state.status == Status.itemNotFound) {
+            Navigator.pushNamed(context, Routes.notFound);
+          }
         }, builder: (context, state) {
           if (state.status == Status.empty) {
             return const Center(child: Text('Empty'));
@@ -35,6 +39,11 @@ class HomePage extends StatelessWidget {
                   itemCount: state.items.length,
                   itemBuilder: (context, int index) {
                     return ListTile(
+                        onTap: () {
+                          context
+                              .read<ItemBloc>()
+                              .add(ItemOnFindById(id: index));
+                        },
                         leading: CircleAvatar(
                           child: Text("${state.items[index].id}"),
                         ),

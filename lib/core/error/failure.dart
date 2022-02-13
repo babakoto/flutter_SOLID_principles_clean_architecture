@@ -10,3 +10,5 @@ class ServerFailure extends Failure {}
 class NotConnectedFailure extends Failure {}
 
 class UnauthorizedFailure extends Failure {}
+
+class ItemNotFoundFailure extends Failure {}

@@ -8,3 +8,14 @@ abstract class ItemEvent extends Equatable {
 }
 
 class ItemOnFinds extends ItemEvent {}
+
+class ItemOnFindById extends ItemEvent {
+  final int id;
+
+  const ItemOnFindById({
+    required this.id,
+  });
+
+  @override
+  List<Object> get props => [id];
+}

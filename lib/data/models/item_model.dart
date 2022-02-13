@@ -1,4 +1,4 @@
-import 'package:clean_architecture/domain/entities/item.dart';
+import 'package:clean_architecture/domain/domain.dart';
 
 class ItemModel extends Item {
   const ItemModel({required int id, required String name})

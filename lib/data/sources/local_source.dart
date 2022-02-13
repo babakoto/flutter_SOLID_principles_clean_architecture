@@ -1,6 +1,4 @@
-import 'package:clean_architecture/core/utils/hive_keys.dart';
 import 'package:clean_architecture/data/models/item_model.dart';
-import 'package:hive/hive.dart';
 
 abstract class LocalSource {
   Future<List<ItemModel>> findItems();

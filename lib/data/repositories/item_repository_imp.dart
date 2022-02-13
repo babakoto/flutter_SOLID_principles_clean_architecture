@@ -1,11 +1,6 @@
-import 'package:clean_architecture/core/error/exceptions.dart';
-import 'package:clean_architecture/core/error/failure.dart';
-import 'package:clean_architecture/core/network/network.dart';
-import 'package:clean_architecture/data/sources/local_source.dart';
-import 'package:clean_architecture/data/sources/server_source.dart';
-import 'package:clean_architecture/domain/entities/item.dart';
-import 'package:clean_architecture/domain/repositories/item_repository.dart';
-import 'package:multiple_result/multiple_result.dart';
+import 'package:clean_architecture/core/core.dart';
+import 'package:clean_architecture/domain/domain.dart';
+import '../data.dart';
 
 class ItemRepositoryImp implements ItemRepository {
   final ServerSource server;
@@ -29,6 +24,22 @@ class ItemRepositoryImp implements ItemRepository {
       }
     } on ServerException {
       return Error(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Result<Failure, Item?>> findItemById(int id) async {
+    try {
+      if (await network.hasConnexion()) {
+        final result = await server.findItemById(id);
+        return Success(result);
+      } else {
+        return Error(NotConnectedFailure());
+      }
+    } on ServerException {
+      return Error(ServerFailure());
+    } on ItemNotFoundException {
+      return Error(ItemNotFoundFailure());
     }
   }
 }
