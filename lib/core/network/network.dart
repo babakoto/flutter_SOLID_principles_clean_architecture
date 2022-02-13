@@ -18,7 +18,7 @@ class NetworkImp implements Network {
     if (state) {
       return true;
     } else {
-      throw NotConnectedException();
+      return false;
     }
   }
 }
