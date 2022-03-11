@@ -9,10 +9,10 @@ abstract class ItemEvent extends Equatable {
 
 class ItemOnFinds extends ItemEvent {}
 
-class ItemOnFindById extends ItemEvent {
+class ItemOnFindItemById extends ItemEvent {
   final int id;
 
-  const ItemOnFindById({
+  const ItemOnFindItemById({
     required this.id,
   });
 

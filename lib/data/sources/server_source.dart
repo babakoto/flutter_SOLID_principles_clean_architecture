@@ -26,8 +26,6 @@ class ServerSourceImp implements ServerSource {
             .map((item) => ItemModel.fromJson(item))
             .toList();
         return result;
-      } else if (response.statusCode == 403 || response.statusCode == 401) {
-        throw UnauthorizedException();
       } else {
         throw ServerException();
       }

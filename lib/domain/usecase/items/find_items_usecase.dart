@@ -1,5 +1,5 @@
 import 'package:clean_architecture/core/core.dart';
-import 'package:clean_architecture/core/usecase/usecase.dart';
+import 'package:clean_architecture/core/utils/generics/usecase.dart';
 import 'package:clean_architecture/domain/entities/item.dart';
 import 'package:clean_architecture/domain/repositories/item_repository.dart';
 import 'package:equatable/equatable.dart';

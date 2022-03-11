@@ -8,5 +8,11 @@
       "name": "NFT",
       "id": 4
     }
+  ],
+  "users": [
+    {"id": 1, "name": "Toto","password": "1234"},
+    {"id": 2, "name": "Tata","password": "1234"},
+    {"id": 3, "name": "Coco","password": "1234"},
+    {"id": 4, "name": "Bebe","password": "1234"}
   ]
 }

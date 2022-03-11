@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:clean_architecture/core/core.dart';
 import 'package:clean_architecture/domain/domain.dart';
-import 'package:clean_architecture/presentation/presentation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
 part 'item_event.dart';
@@ -14,7 +13,7 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
   ItemBloc({required this.findItemsUseCase, required this.findItemByIdUseCase})
       : super(const ItemState(status: Status.empty, items: [])) {
     on<ItemOnFinds>(_onFindItems);
-    on<ItemOnFindById>(_onFindById);
+    on<ItemOnFindItemById>(_onFindItemById);
   }
 
   Future<void> _onFindItems(ItemOnFinds event, Emitter<ItemState> emit) async {
@@ -32,13 +31,13 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
     }
   }
 
-  Future<void> _onFindById(
-      ItemOnFindById event, Emitter<ItemState> emit) async {
+  Future<void> _onFindItemById(
+      ItemOnFindItemById event, Emitter<ItemState> emit) async {
     emit(state.copyWith(status: Status.loading));
     final result = await findItemByIdUseCase(event.id);
     if (result.isSuccess()) {
       emit(state.copyWith(
-          itemSelected: result.getSuccess(), status: Status.loaded));
+          currentItem: result.getSuccess(), status: Status.loaded));
     } else {
       if (result.getError() is ServerFailure) {
         emit(state.copyWith(status: Status.serverError));

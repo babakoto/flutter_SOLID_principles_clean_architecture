@@ -2,8 +2,9 @@
 export 'utils/multiple_result.dart';
 
 // Network Exports
-export 'utils/network_path.dart';
-export 'network/network.dart';
+export 'constants/network_path.dart';
+
+export './services/network/internet_info.dart';
 
 // Error exports
 export 'error/exceptions.dart';

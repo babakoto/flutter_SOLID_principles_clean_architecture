@@ -10,26 +10,34 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: BlocConsumer<ItemBloc, ItemState>(listener: (context, state) {
           if (state.status == Status.serverError) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                backgroundColor: Colors.red, content: Text("Server Error")));
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                backgroundColor: Colors.red,
+                content: Text("Server Error"),
+              ),
+            );
           }
-
           if (state.status == Status.networkError) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                backgroundColor: Colors.red, content: Text("Not connected ")));
-          }
-
-          if (state.status == Status.itemNotFound) {
-            Navigator.pushNamed(context, Routes.notFound);
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                backgroundColor: Colors.red,
+                content: Text("Not connected "),
+              ),
+            );
           }
         }, builder: (context, state) {
           if (state.status == Status.empty) {
-            return const Center(child: Text('Empty'));
+            return const Center(
+              child: Text('Empty'),
+            );
           } else if (state.status == Status.loading) {
-            return const Center(child: Text('Loading ...'));
+            return const Center(
+              child: Text('Loading ...'),
+            );
           } else {
             return RefreshIndicator(
               onRefresh: () async {
@@ -40,9 +48,10 @@ class HomePage extends StatelessWidget {
                   itemBuilder: (context, int index) {
                     return ListTile(
                         onTap: () {
-                          context
-                              .read<ItemBloc>()
-                              .add(ItemOnFindById(id: index));
+                          context.read<ItemBloc>().add(
+                                ItemOnFindItemById(id: state.items[index].id),
+                              );
+                          Navigator.pushNamed(context, Routes.detail);
                         },
                         leading: CircleAvatar(
                           child: Text("${state.items[index].id}"),

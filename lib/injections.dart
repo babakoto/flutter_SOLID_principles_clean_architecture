@@ -1,4 +1,5 @@
 import 'package:clean_architecture/core/core.dart';
+import 'package:clean_architecture/core/services/network/network.dart';
 import 'package:clean_architecture/data/data.dart';
 import 'package:clean_architecture/domain/domain.dart';
 import 'package:clean_architecture/presentation/presentation.dart';
@@ -16,9 +17,11 @@ Future<void> init() async {
 
   //SERVICES REGISTER
   getIt.registerLazySingleton<InternetConnectionChecker>(
-      () => InternetConnectionChecker());
+    () => InternetConnectionChecker(),
+  );
 
-  getIt.registerLazySingleton<Network>(() => NetworkImp(checker: getIt()));
+  getIt.registerLazySingleton<InternetInfo>(
+      () => InternetInfoImp(checker: getIt()));
 
   getIt.registerLazySingleton<LocalSource>(() => LocalSourceImp());
 
@@ -27,7 +30,9 @@ Future<void> init() async {
 
   //  REPOSITORIES REGISTER
   getIt.registerLazySingleton<ItemRepository>(() => ItemRepositoryImp(
-      localSource: getIt<LocalSource>(), network: getIt(), server: getIt()));
+      localSource: getIt<LocalSource>(),
+      internetInfo: getIt(),
+      server: getIt()));
 
   //  USE CASES REGISTER
   getIt.registerLazySingleton<FindItemsUseCase>(
