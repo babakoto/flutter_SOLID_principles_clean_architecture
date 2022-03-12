@@ -43,4 +43,20 @@ class ItemRepositoryImp implements ItemRepository {
       return Error(ItemNotFoundFailure());
     }
   }
+
+  @override
+  Future<Result<Failure, Item?>> addItem(String name) async {
+    try {
+      if (await internetInfo.hasConnexion()) {
+        final result = await server.addItem(name);
+        return Success(result);
+      } else {
+        return Error(NotConnectedFailure());
+      }
+    } on ServerException {
+      return Error(ServerFailure());
+    } on ItemNotFoundException {
+      return Error(ItemNotFoundFailure());
+    }
+  }
 }

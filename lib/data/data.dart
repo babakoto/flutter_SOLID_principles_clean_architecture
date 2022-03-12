@@ -1,5 +1,5 @@
 // Export Sources
-export 'sources/local_source.dart';
+export 'sources/local/local_source.dart';
 export 'sources/server_source.dart';
 
 // Export models

@@ -8,7 +8,7 @@ part 'item_state.dart';
 
 class ItemBloc extends Bloc<ItemEvent, ItemState> {
   final FindItemsUseCase findItemsUseCase;
-  final FindItemByIdUseCase findItemByIdUseCase;
+  final FindItemById findItemByIdUseCase;
 
   ItemBloc({required this.findItemsUseCase, required this.findItemByIdUseCase})
       : super(const ItemState(status: Status.empty, items: [])) {

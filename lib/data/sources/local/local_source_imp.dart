@@ -1,8 +1,4 @@
-import 'package:clean_architecture/data/models/item_model.dart';
-
-abstract class LocalSource {
-  Future<List<ItemModel>> findItems();
-}
+import 'package:clean_architecture/data/data.dart';
 
 class LocalSourceImp implements LocalSource {
   @override

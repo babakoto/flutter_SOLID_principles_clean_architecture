@@ -1,6 +1,7 @@
 import 'package:clean_architecture/core/core.dart';
 import 'package:clean_architecture/core/services/network/network.dart';
 import 'package:clean_architecture/data/data.dart';
+import 'package:clean_architecture/data/sources/local/local_source_imp.dart';
 import 'package:clean_architecture/domain/domain.dart';
 import 'package:clean_architecture/presentation/presentation.dart';
 
@@ -38,6 +39,6 @@ Future<void> init() async {
   getIt.registerLazySingleton<FindItemsUseCase>(
       () => FindItemsUseCase(repository: getIt<ItemRepository>()));
 
-  getIt.registerLazySingleton<FindItemByIdUseCase>(
-      () => FindItemByIdUseCase(repository: getIt<ItemRepository>()));
+  getIt.registerLazySingleton<FindItemById>(
+      () => FindItemById(repository: getIt<ItemRepository>()));
 }
