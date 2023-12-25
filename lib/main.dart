@@ -1,10 +1,11 @@
-import 'package:clean_architecture/injections.dart';
-import 'package:clean_architecture/presentation/bloc/item/item_bloc.dart';
-import 'package:clean_architecture/presentation/routes/route.dart';
-import 'package:clean_architecture/presentation/themes/app_theme.dart';
-import 'package:clean_architecture/single_bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'injections.dart';
+import 'presentation/bloc/item/item_bloc.dart';
+import 'presentation/routes/route.dart';
+import 'presentation/themes/app_theme.dart';
+import 'single_bloc_observer.dart';
 
 void main() async {
   await init();
